@@ -31,8 +31,18 @@ public class UserResource {
         return service.findAll();
     }
 
-    //EntityModel
-    //WebMvcLinkBuilder
+    //GET /users
+/*    @GetMapping("/users")
+    public MappingJacksonValue retrieveAllUsers(){
+        List<User> userList = userService.findAll();
+        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(userList);
+
+        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("id", "name", "birthDate");
+        FilterProvider filters = new SimpleFilterProvider().addFilter("UserFilter", filter);
+        mappingJacksonValue.setFilters(filters);
+
+        return mappingJacksonValue;
+    }*/
 
     @GetMapping("/users/{id}")
     public EntityModel<User> retrieveUser(@PathVariable int id) {
@@ -69,20 +79,6 @@ public class UserResource {
     }
 
 }
-
-
-    //GET /users
-/*    @GetMapping("/users")
-    public MappingJacksonValue retrieveAllUsers(){
-        List<User> userList = userService.findAll();
-        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(userList);
-
-        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("id", "name", "birthDate");
-        FilterProvider filters = new SimpleFilterProvider().addFilter("UserFilter", filter);
-        mappingJacksonValue.setFilters(filters);
-
-        return mappingJacksonValue;
-    }*/
 
     //GET /users/{id}
 //    @GetMapping("/users/{id}")
